@@ -3,6 +3,8 @@
 - 기존 코드의 유지 관리 문제와 추가적인 ML 관련 문제가 있지만, 이것은 발견하기가 꽤나 어려운데, 그 이유는 코드 상의 문제가 아닌 시스템상의 문제이기 때문.
 - 이 논문에서는 그 해결책을 제시해주는것은 아님, 단지 어떤 문제들이 있는지 의식하도록 하는것
 
+
+
 ### Complex Models Erode Boundaries
 
 - the desired behavior cannot be effectively expressed in software logic without dependency on external data
@@ -20,6 +22,8 @@
     - 전체적인 성능향상이 있을지라도 모델 Ma를 변화 또는 수정하기가 어려워지고, hidden feeback loops를 만들수도 있다.
     - 완화 방법 : access restrictions or strict-level argreements(SLAs)
 
+
+
 ### Data Dependencies Cost More than Code Dependencies
 
 - **Unstable Data Dependencies** : 다른 머신의 output을 모델의 학습 input으로 둘 때, 이 데이터들이 질적으로, 양적으로 안정적이지 않는 경우 문제가 될 수 있음
@@ -36,6 +40,8 @@
     - 코드가 컴파일러나 빌드 시스템에 의해 의존도 체크를 하듯이, ML에서도 tool을 이용해서 에러 체크 등을 할 수 있음.
     - 이런 체크가 모든 의존성이 적절한지를 확인하기 때문에 automated feature management system으로 볼 수 있다.
 
+
+
 ### Feedback Loops
 
 - ML 시스템은 지속적으로 업데이트된다면 해당 시스템의 결과의 영향을 받는데, 이것은 analysis debt를 초래한다.
@@ -49,6 +55,8 @@
         - 예시 : 웹 페이지의 양상을 분별하는 서로 다른 2개의 시스템 (하나는 나열할 상품을 선택하고, 다른 하나는 이와 관련된 리뷰를 선택)
     - 이런 간접적인 loop가 완전히 분리된 시스템 사이에서도 발생할 수 있다.
         - 예시 : 서로 다른 회사에서 각자 개발한 주식시장 예측 모델 (하나의 모델에서의 호가, 매수가 다른 모델에 영향을 줄 수 있다.)
+
+
 
 ### ML-System Anti-Patterns
 
@@ -82,6 +90,8 @@
         - 프로토타입을 사용하는건 좋으나 그 환경을 계속해서 사용하는건 실제 프로덕트로의 전환을 어렵게하는 문제가 될 수 있다.
         - 프로토타입 환경을 유지하는것도 쉽지않다
 
+
+
 ### Configuration Debt
 
 - configuration을 확인하고 테스트하는게 별거아닐 수 있지만, 실제 연구자와 엔지니어 모두 configuration에 대해 숙고하고 있음.
@@ -93,6 +103,8 @@
     - config의 기본적인 사항이 자동적으로 확인되어야 한다. : 사용되는 feature 갯수, transitive closure of data dependencies 등
     - 사용하지 않는 세팅 발견이 가능해야 한다.
     - config는 전체 리뷰가 진행되어야 한다.
+
+
 
 ### Dealing with Changes in the External World
 
@@ -118,6 +130,8 @@
     - Up-Stream Producers
         - 다른 모델을 통해 생성 및 전달되는 데이터가 있을 경우 이 모델들을 up-stream producer라고 한다.
         - down-stream 모델에 영향을 줄 수 있기 때문에 모니터링 및 테스트가 필요하다.
+
+
 
 ### Conclusions : Measuring Debt and Paying it Off
 
