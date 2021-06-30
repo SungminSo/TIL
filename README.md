@@ -19,3 +19,4 @@
 - [Language](https://github.com/SungminSo/TIL/tree/main/Language)
 - [Math](https://github.com/SungminSo/TIL/tree/main/Math)
 - [Workout](https://github.com/SungminSo/TIL/tree/main/Workout)
+- [etc](https://github.com/SungminSo/TIL/tree/main/etc)
