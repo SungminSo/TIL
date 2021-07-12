@@ -152,4 +152,7 @@ Grafana에서 DB를 직접 연결하는 경우 쿼리값은 시계열 데이터�
 	ORDER BY pages desc
 	LIMIT 7
 	```	
- 
+      
+## Notes
+- https://nomadlee.com/mysql-monitoring-query
+- https://soft.plusblog.co.kr/87
