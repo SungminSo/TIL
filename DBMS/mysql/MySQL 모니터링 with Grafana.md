@@ -21,6 +21,7 @@ Grafana에서 DB를 직접 연결하는 경우 쿼리값은 시계열 데이터�
 	ORDER BY database_size desc
 	LIMIT 5
 	```
+	
 - 테이블 별 레코드 수
 
 	```
@@ -73,6 +74,7 @@ Grafana에서 DB를 직접 연결하는 경우 쿼리값은 시계열 데이터�
 	FROM sys.schema_unused_indexes
 	LIMIT 5
 	```
+	
 - 성능이 떨어지는 인덱스
 
 	```
@@ -132,8 +134,7 @@ Grafana에서 DB를 직접 연결하는 경우 쿼리값은 시계열 데이터�
 	ORDER BY connections desc
 	```
 
-- 활성화된 Connection
-
+- 총 connections 수
 	```
 	SELECT
 	  count(*) AS 'count'
@@ -152,6 +153,58 @@ Grafana에서 DB를 직접 연결하는 경우 쿼리값은 시계열 데이터�
 	ORDER BY pages desc
 	LIMIT 7
 	```	
+	
+- 활성화된 ProcessList Count
+
+	```
+	SELECT
+	  count(*) AS 'count'
+	FROM PROCESSLIST
+	WHERE PROCESSLIST.STATE <> ''
+	```
+	
+- 서버 상태값들
+
+	```
+	show global status where variable_name in (
+	'questions',
+	'com_select',
+	'com_insert',
+	'com_delete',
+	'com_update',
+	'com_delete_multi',
+	'com_insert_select',
+	'com_update_multi',
+	'aborted_clients',
+	'aborted_connects'
+	)
+	```
+
+### Performance
+- 이건 MySQL 인스턴스에서 `performance_schema`가 `on`으로 되어 있어야 사용 가능
+	- `show variables like 'performance_schema';`
+
+- Performance_Schema 메트릭
+
+	```
+	SELECT
+	  EVENT_NAME,
+	  MAX_TIMER_READ,
+	  AVG_TIMER_READ,
+	  MAX_TIMER_WRITE,
+	  AVG_TIMER_WRITE,
+	  MAX_TIMER_MISC,
+	  AVG_TIMER_MISC
+	FROM performance_schema.file_summary_by_event_name
+	```
+	
+- 쿼리 실행 시 전체 테이블 스캔을 수행하는 테이블 확인
+
+	```
+	SELECT *
+	FROM sys.x$schema_tables_with_full_table_scans
+	ORDER BY rows_full_scanned DESC,latency DESC LIMIT 5
+	```
       
 ## Notes
 - https://nomadlee.com/mysql-monitoring-query
