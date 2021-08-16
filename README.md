@@ -17,6 +17,7 @@
 - [Data](https://github.com/SungminSo/TIL/tree/main/Data)
 - [DevOps](https://github.com/SungminSo/TIL/tree/main/DevOps)
 - [Language](https://github.com/SungminSo/TIL/tree/main/Language)
+- [Managing](https://github.com/SungminSo/TIL/tree/main/Managing)
 - [Math](https://github.com/SungminSo/TIL/tree/main/Math)
 - [Workout](https://github.com/SungminSo/TIL/tree/main/Workout)
 - [etc](https://github.com/SungminSo/TIL/tree/main/etc)
