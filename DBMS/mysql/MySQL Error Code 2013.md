@@ -60,3 +60,4 @@
 		- `character_set_client`, `timezone`의 경우 파라미터 적용 유형이 `dynamic`일지라도 인스턴스 재기동 후에 적용된다고 함(타 팀에서 경험한 부분)
 		- notes: https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html
 	- 워크로드에서의 쿼리 부하를 살펴보기 위해 `slow_query_log` 값을 1로 변경하고, `slow_query_log_file` 값 지정
+	- `wait_timeout` 값을 1800(30분)에서 300(5분)으로 변경
