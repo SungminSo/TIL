@@ -23,7 +23,7 @@
 	- `aborted_connections` 값을 확인했을 떄는 200 이상인 것 확인
 	- DB와 연결을 맺고 끊는데 있어서 문제가 있는게 확실한것으로 보임
 
-## 에러 해결 과정(~ing)
+## 에러 해결 과정
 1. DB 인스턴스에서 파라미터 확인
 	- DB 인스턴스 접속 후 터미널에서 또는 Datagrip에서 콘솔 열어서 확인(AWS RDS 파라미터 그룹에서도 확인 가능)
 		- `show variables like 'connect_timeout'; `
@@ -53,11 +53,13 @@
 		- 해당 테이블이 다른 서버(worker) 및 스크립트에서 지속적으로 사용되고 있어 row lock이 계속 걸려 있는 상황
 		- 테이블 `ALTER` 시 table lock을 잡는데 row lock이 모두 풀릴 때까지 기다려서 table lock이 풀리지 않음
 		- 부가적으로 *workbench*를 사용해서 `ALTER`를 했을 때 2013 에러 발생하고 meta lock은 지속되는것이 확인되어 기존 2013 에러도 클라이언트에서 DB 서버에서 `response`를 받지 못해서 클라이언트 측에서 연결을 끊어버려 발생한 것이라는게 확인됨
-	- 해당 DB 테이블에 row가 그리 많지 않고, `SELECT` 뿐 아니라 `INSERT`, `DELETE`도 자주 발생하기 때문에 index를 걸었을 때 이점이 뚜렷하지 않아 index 추가는 하지 않음
-4. DB 파라미터 설정값 수정(~ing)
+	- `show engine innodb status;` 쿼리로 deadlock 확인하고 해당 쿼리에 따라 해당 칼럼에 index 추가
+	- 그 결과 아래 사진처럼 lock wait의 빈도 및 시간이 줄어드는 것 확인
+	![mysql_lock_waits](./images/mysql_lock_waits.png)
+4. DB 파라미터 설정값 수정
 	- AWS RDS에서 해당 DB 파라미터 적용 유형 확인 시 `dynamic`으로 되어있어 인스턴스 재기동 없이 적용가능하다는것 확인
 		- `static`으로 되어있을 경우 인스턴스 재기동이 필요
-		- `character_set_client`, `timezone`의 경우 파라미터 적용 유형이 `dynamic`일지라도 인스턴스 재기동 후에 적용된다고 함(타 팀에서 경험한 부분)
+		- `character_set_client`, `timezone`의 경우 파라미터 적용 유형이 `dynamic`일지라도 인스턴스 재기동 후에 적용된다고 함(다른 팀에서 경험한 부분)
 		- notes: https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html
 	- 워크로드에서의 쿼리 부하를 살펴보기 위해 `slow_query_log` 값을 1로 변경하고, `slow_query_log_file` 값 지정
 	- `wait_timeout` 값을 1800(30분)에서 300(5분)으로 변경
