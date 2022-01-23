@@ -1,0 +1,68 @@
+# DevOps 엔지니어 성장 전략
+
+## DevOps 엔지니어 로드맵
+- notes: https://github.com/kamranahmedse/developer-roadmap
+- 프로그래밍 언어(인프라 관련 서드파티에 대한 지원이 잘 되어 있는 언어가 추천순위가 높은편)
+	- Go
+	- Python
+	- Node.js
+- 운영체제 이해
+	- process management
+	- threads and concurrency
+	- sockets
+	- POSIX basics
+	- networking concepts
+	- I/O managements
+	- virtualization
+	- memory/storage
+	- file systems
+- 서버 관리
+	- 운영체제
+		- 리눅스 (Debian, Ubuntu, CentOS, RHEL)
+	- 터미널
+		- 쉘 / bash 스크립트
+		- vim / nano
+	- 네트워크 / 보안
+		- http / https / ftp
+		- SSL/TLS
+		- ssh
+		- port forwarding
+		- reverse proxy
+		- forward proxy
+		- caching server
+		- load balancer
+	- 웹 서버
+		- nginx
+		- tomcat
+- IaC (Infrastructure as Code)
+	- CI/CD
+		- gitlab CI
+		- github Actions
+		- Jenkins
+		- circle CI
+	- Containers
+		- Docker
+	- Configuration Management
+		- ansible
+	- Contianer Orchestration
+		- k8s
+		- nomad
+	- Infrastructure Provisioning
+		- terraform
+		- cloudFormation
+- 모니터링
+	- log management
+		- elastic stack (최근 로그 관리 뿐 아니라 애플리케이션, 인프라 모니터링도 제공됨)
+	- application monitoring
+		- joeger
+		- new relic
+		- openTracing
+	- infrastructure monitoring
+		- prometheus
+		- grafana
+		- datadog
+       		
+## DevOps 엔지니어 신입 가능한가?
+- 경험적으로 봤을때는 시스템 엔지니어 / 백엔드 엔지니어 / 데이터 플랫폼 엔지니어 경력을 가지신 분들이 데브옵스 엔지니어로 전향하시는 경우가 많음
+- 신입도 불가능하지는 않겠지만 현실적으로 봤을 때 소프트웨어 또는 시스템 엔지니어를 하다가 넘어가는 케이스가 더 유리한것 같음
+
