@@ -9,6 +9,6 @@
 	- `kubectl get cm cluster-info -oyaml -n kube-public`
 	- 혹시 cluster의 server값이 private ip로 되어있다면, public ip로 변경(`kubectl edit cm cluster-info -oyaml -n kube-public`으로 직접 변경)
 4. 연결하고자 하는 워커 노드에서 join
-	- `kubectl get cm cluster-info -oyaml -n kube-public`
+	- `kubeadm join {마스터노드 public ip 주소}:6443 --token {1번에서의 토큰값} --discovery-token-ca-cert-hash sha256:{2번에서의 해쉬값}`
 5. 마스터 노드에서 확인
 	- `kubectl get nodes`
